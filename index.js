@@ -2,15 +2,28 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Animated, View, Image, StyleSheet } from 'react-native'
 
+// https://github.com/facebook/react-native/blob/master/Libraries/Image/ImageSourcePropType.js
+const ImageURISourcePropType = PropTypes.shape({
+  uri: PropTypes.string,
+});
+
+const ImageSourcePropType = PropTypes.oneOfType([
+  ImageURISourcePropType,
+  // Opaque type returned by require('./image.jpg')
+  PropTypes.number,
+  // Multiple sources
+  PropTypes.arrayOf(ImageURISourcePropType),
+]);
+
 export default class ProgressiveImage extends Component {
   static propTypes = {
     placeHolderColor: PropTypes.string,
-    placeHolderSource: PropTypes.number,
-    imageSource: PropTypes.object.isRequired,
+    placeHolderSource: ImageSourcePropType,
+    imageSource: ImageSourcePropType.isRequired,
     imageFadeDuration: PropTypes.number.isRequired,
     onLoadThumbnail: PropTypes.func.isRequired,
     onLoadImage: PropTypes.func.isRequired,
-    thumbnailSource: PropTypes.object.isRequired,
+    thumbnailSource: ImageSourcePropType.isRequired,
     thumbnailFadeDuration: PropTypes.number.isRequired,
     thumbnailBlurRadius: PropTypes.number,
   }
