@@ -17,6 +17,7 @@
   "repository": "DylanVann/react-native-progressive-image",
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "prop-types": "*"
   }
 }
