@@ -3,6 +3,26 @@ import PropTypes from 'prop-types'
 import { Animated, View, Image, StyleSheet } from 'react-native'
 
 export default class ProgressiveImage extends Component {
+  static propTypes = {
+    placeHolderColor: PropTypes.string,
+    placeHolderSource: PropTypes.number,
+    imageSource: PropTypes.object.isRequired,
+    imageFadeDuration: PropTypes.number.isRequired,
+    onLoadThumbnail: PropTypes.func.isRequired,
+    onLoadImage: PropTypes.func.isRequired,
+    thumbnailSource: PropTypes.object.isRequired,
+    thumbnailFadeDuration: PropTypes.number.isRequired,
+    thumbnailBlurRadius: PropTypes.number,
+  }
+
+  static defaultProps = {
+    thumbnailFadeDuration: 250,
+    imageFadeDuration: 250,
+    thumbnailBlurRadius: 5,
+    onLoadThumbnail: Function.prototype,
+    onLoadImage: Function.prototype,
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -62,23 +82,3 @@ export default class ProgressiveImage extends Component {
      right: 0,
    },
  })
-
-ProgressiveImage.propTypes = {
-  placeHolderColor: PropTypes.string,
-  placeHolderSource: PropTypes.number,
-  imageSource: PropTypes.object.isRequired,
-  imageFadeDuration: PropTypes.number.isRequired,
-  onLoadThumbnail: PropTypes.func.isRequired,
-  onLoadImage: PropTypes.func.isRequired,
-  thumbnailSource: PropTypes.object.isRequired,
-  thumbnailFadeDuration: PropTypes.number.isRequired,
-  thumbnailBlurRadius: PropTypes.number,
-}
-
-ProgressiveImage.defaultProps = {
-  thumbnailFadeDuration: 250,
-  imageFadeDuration: 250,
-  thumbnailBlurRadius: 5,
-  onLoadThumbnail: Function.prototype,
-  onLoadImage: Function.prototype,
-}
