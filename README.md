@@ -18,6 +18,12 @@ Progressively load images. Loads a small thumbnail first. Includes fade and blur
 ```bash
 yarn add react-native-progressive-image
 ```
+### and
+```bash
+yarn add react-native-fast-image
+react-native link
+```
+
 
 ## Usage
 
@@ -27,7 +33,9 @@ import ProgressiveImage from 'react-native-progressive-image'
 const TheProgressiveImage = () =>
   <ProgressiveImage
     thumbnailSource={{ uri: 'http://i.imgur.com/O249H4P.png?bust' + Math.random() }}
-    imageSource={{ uri: 'http://i.imgur.com/741u15U.png?bust' + Math.random() }}
+    urlImage={
+							'https://www.wallpaperup.com/uploads/wallpapers/2013/03/23/58680/bb4dead81d6348db89062e77ea0c287e.jpg'
+						}
     style={{ flex: 1, alignItems: 'stretch' }}
   />
 ```
@@ -36,7 +44,7 @@ const TheProgressiveImage = () =>
 
 | Prop | Description | Default |
 |---|---|---|
-| **`imageSource`** | Image source (e.g. { uri: 'https://facebook.github.io/react/img/logo_og.png' }). | None |
+| **`imageSource`** |  Image source (e.g. { uri: 'https://facebook.github.io/react/img/logo_og.png' }). | None |
 | **`thumbnailSource`** | Should be a low resolution version of the image used in `imageSource`. | None |
 | **`thumbnailBlurRadius`** | Blur radius for the low resolution thumbnail (iOS only). | `5` |
 | **`style`** | Make sure to include width and height, or use flex. | None |
@@ -44,6 +52,14 @@ const TheProgressiveImage = () =>
 | **`thumbnailFadeDuration`** | Fade-in duration for the thumbnail in ms. | `250` |
 | **`onLoadThumbnail`** | Callback function that gets called when the thumbnail is loaded. | `noop` |
 | **`onLoadImage`** | Callback function that gets called when the main image is loaded. | `noop` |
+| **`urlImage`** | url image Strign. Image source (e.g. {'https://facebook.github.io/react/img/logo_og.png' }).| None` |
+
+### imageSource fue reemplazado por urlImage y ahora es un string, ejemplo 
+```javascript
+urlImage={
+							'https://www.wallpaperup.com/uploads/wallpapers/2013/03/23/58680/bb4dead81d6348db89062e77ea0c287e.jpg'
+						}
+```
 
 ## Credits
 

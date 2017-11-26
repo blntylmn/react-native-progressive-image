@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import FastImage from 'react-native-fast-image'
 import { Animated, View, Image, StyleSheet } from 'react-native'
 
 // https://github.com/facebook/react-native/blob/master/Libraries/Image/ImageSourcePropType.js
@@ -15,17 +16,20 @@ const ImageSourcePropType = PropTypes.oneOfType([
 	PropTypes.arrayOf(ImageURISourcePropType)
 ])
 
+const FastImageAnimated = Animated.createAnimatedComponent(FastImage)
+
 export default class ProgressiveImage extends Component {
 	static propTypes = {
 		placeHolderColor: PropTypes.string,
 		placeHolderSource: ImageSourcePropType,
-		imageSource: ImageSourcePropType.isRequired,
+		// imageSource: ImageSourcePropType.isRequired,
 		imageFadeDuration: PropTypes.number.isRequired,
 		onLoadThumbnail: PropTypes.func.isRequired,
 		onLoadImage: PropTypes.func.isRequired,
 		thumbnailSource: ImageSourcePropType.isRequired,
 		thumbnailFadeDuration: PropTypes.number.isRequired,
-		thumbnailBlurRadius: PropTypes.number
+		thumbnailBlurRadius: PropTypes.number,
+		urlImage: PropTypes.string
 	}
 
 	static defaultProps = {
@@ -63,14 +67,10 @@ export default class ProgressiveImage extends Component {
 	}
 	onError(e) {
 		this.setState({ errorImage: true })
-		console.log({
-			error: e.nativeEvent,
-			loading: false
-		})
 	}
 
 	render() {
-		console.log(this.props.imageSource)
+		// console.log(this.props.imageSource)
 		return (
 			<View style={this.props.style}>
 				<Image
@@ -78,18 +78,23 @@ export default class ProgressiveImage extends Component {
 					style={[styles.image, this.props.style]}
 					source={this.props.placeHolderSource}
 				/>
-				<Animated.Image
+				<FastImageAnimated
 					resizeMode="cover"
 					style={[
 						styles.image,
 						{ opacity: this.state.thumbnailOpacity },
 						this.props.style
 					]}
-					source={this.props.thumbnailSource}
+					//	source={this.props.thumbnailSource}
+					source={{
+						uri: this.props.urlImage,
+						headers: { Authorization: 'someAuthToken' },
+						priority: FastImage.priority.normal
+					}}
 					onLoad={() => this.onLoadThumbnail()}
 					blurRadius={this.props.thumbnailBlurRadius}
 				/>
-				<Animated.Image
+				<FastImageAnimated
 					resizeMode="cover"
 					style={[
 						styles.image,
@@ -102,7 +107,9 @@ export default class ProgressiveImage extends Component {
 									uri:
 										'http://geekycentral.com/wp-content/uploads/2017/09/react-native.png'
 								}
-							: this.props.imageSource
+							: {
+									uri: this.props.urlImage
+								}
 					}
 					onLoad={() => this.onLoadImage()}
 					onError={e => this.onError(e)}
