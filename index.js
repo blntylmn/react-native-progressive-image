@@ -29,7 +29,8 @@ export default class ProgressiveImage extends Component {
 		thumbnailSource: ImageSourcePropType.isRequired,
 		thumbnailFadeDuration: PropTypes.number.isRequired,
 		thumbnailBlurRadius: PropTypes.number,
-		urlImage: PropTypes.string
+		urlImage: PropTypes.string,
+		urlImagenOnError: PropTypes.string
 	}
 
 	static defaultProps = {
@@ -104,8 +105,7 @@ export default class ProgressiveImage extends Component {
 					source={
 						this.state.errorImage
 							? {
-									uri:
-										'http://geekycentral.com/wp-content/uploads/2017/09/react-native.png'
+									uri: this.props.urlImagenOnError
 								}
 							: {
 									uri: this.props.urlImage

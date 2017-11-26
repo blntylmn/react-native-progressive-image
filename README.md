@@ -34,6 +34,7 @@ const TheProgressiveImage = () =>
   <ProgressiveImage
     thumbnailSource={{ uri: 'http://i.imgur.com/O249H4P.png?bust' + Math.random() }}
     urlImage={'https://www.wallpaperup.com/uploads/wallpapers/2013/03/23/58680/bb4dead81d6348db89062e77ea0c287e.jpg'}
+    urlImagenOnError={'http://geekycentral.com/wp-content/uploads/2017/09/react-native.png'}
     style={{ flex: 1, alignItems: 'stretch' }}
   />
 ```
@@ -51,6 +52,7 @@ const TheProgressiveImage = () =>
 | **`onLoadThumbnail`** | Callback function that gets called when the thumbnail is loaded. | `noop` |
 | **`onLoadImage`** | Callback function that gets called when the main image is loaded. | `noop` |
 | **`urlImage`** | url image Strign. Image source (e.g. {'https://facebook.github.io/react/img/logo_og.png' }).| None |
+| **`urlImagenOnError`** | url image Strign. Image source (e.g. {'https://facebook.github.io/react/img/logo_og.png' }).| None |
 
 ### imageSource fue reemplazado por urlImage y ahora es un string, ejemplo 
 ```javascript
