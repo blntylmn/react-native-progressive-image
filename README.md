@@ -33,9 +33,7 @@ import ProgressiveImage from 'react-native-progressive-image'
 const TheProgressiveImage = () =>
   <ProgressiveImage
     thumbnailSource={{ uri: 'http://i.imgur.com/O249H4P.png?bust' + Math.random() }}
-    urlImage={
-							'https://www.wallpaperup.com/uploads/wallpapers/2013/03/23/58680/bb4dead81d6348db89062e77ea0c287e.jpg'
-						}
+    urlImage={'https://www.wallpaperup.com/uploads/wallpapers/2013/03/23/58680/bb4dead81d6348db89062e77ea0c287e.jpg'}
     style={{ flex: 1, alignItems: 'stretch' }}
   />
 ```
@@ -52,13 +50,11 @@ const TheProgressiveImage = () =>
 | **`thumbnailFadeDuration`** | Fade-in duration for the thumbnail in ms. | `250` |
 | **`onLoadThumbnail`** | Callback function that gets called when the thumbnail is loaded. | `noop` |
 | **`onLoadImage`** | Callback function that gets called when the main image is loaded. | `noop` |
-| **`urlImage`** | url image Strign. Image source (e.g. {'https://facebook.github.io/react/img/logo_og.png' }).| None` |
+| **`urlImage`** | url image Strign. Image source (e.g. {'https://facebook.github.io/react/img/logo_og.png' }).| None |
 
 ### imageSource fue reemplazado por urlImage y ahora es un string, ejemplo 
 ```javascript
-urlImage={
-							'https://www.wallpaperup.com/uploads/wallpapers/2013/03/23/58680/bb4dead81d6348db89062e77ea0c287e.jpg'
-						}
+urlImage={'https://www.wallpaperup.com/uploads/wallpapers/2013/03/23/58680/bb4dead81d6348db89062e77ea0c287e.jpg'}
 ```
 
 ## Credits
